@@ -19,7 +19,7 @@ namespace NSSBackEndProject.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Reading Interests")]
+        [Display(Name = "Reading Interests?")]
         public string ReadingInterests { get; set; }
 
 

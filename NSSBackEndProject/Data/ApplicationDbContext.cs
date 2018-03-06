@@ -13,9 +13,24 @@ namespace NSSBackEndProject.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<BookQuiz> BookQuiz { get; set; }
+        public DbSet<BookShelf> BookShelf  { get; set; }
+        public DbSet<FanFiction> FanFiction { get; set; }
+        public DbSet<Friendship> Friendship { get; set; }
+        public DbSet<QuizAnswers> QuizAnswers { get; set; }
+        public DbSet<QuizQuestions> QuizQuestions { get; set; }
+        public DbSet<Recommendations> Recommendations  { get; set; }
+
+
+
+
+
+
+    protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.

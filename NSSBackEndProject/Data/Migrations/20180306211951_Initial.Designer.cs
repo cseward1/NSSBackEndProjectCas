@@ -11,9 +11,10 @@ using System;
 namespace NSSBackEndProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180306211951_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -449,12 +450,12 @@ namespace NSSBackEndProject.Data.Migrations
                     b.HasOne("NSSBackEndProject.Models.ApplicationUser", "UserReciever")
                         .WithMany()
                         .HasForeignKey("UserRecieverId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("NSSBackEndProject.Models.ApplicationUser", "UserSender")
                         .WithMany()
                         .HasForeignKey("UserSenderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("NSSBackEndProject.Models.QuizAnswers", b =>

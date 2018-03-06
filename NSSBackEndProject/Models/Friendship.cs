@@ -19,6 +19,7 @@ namespace NSSBackEndProject.Models
         //QUESTION: Do I need to require more than one user since a userSender and a userReciever information will be stored within this table? YES, you do. I have made changes to correct this. 
         [Required]
         public ApplicationUser UserSender { get; set; }
+        
 
         [Required]
         public ApplicationUser UserReciever { get; set; }
