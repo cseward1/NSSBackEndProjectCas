@@ -24,7 +24,11 @@ namespace NSSBackEndProject.Models
         //Require the User Id (I will have a Sender and a Reciever though....)
         //QUESTION: Do I need to have more than one user Requirement or is one fine? (Because I will have a user and sender)
         [Required]
-        public ApplicationUser User { get; set; }
+        public ApplicationUser UserSender { get; set; }
+
+        [Required]
+        public ApplicationUser UserReciever { get; set; }
+
 
 
     }
