@@ -36,6 +36,11 @@ namespace NSSBackEndProject
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            //new code for API:
+            services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
+                e => Configuration.GetSection("ApplicationConfiguration")
+                        .Get<ApplicationConfiguration>());
+
             services.AddMvc();
         }
 

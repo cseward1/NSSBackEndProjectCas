@@ -1,23 +1,13 @@
-﻿// Write your JavaScript code.
-//include the search bar for the books:
+﻿//Allow the Favorite Movie Button to bring the user to another page with their favorite movies listed 
 
-﻿$("#bookGrid").on("click", evt => {
-    const apiId = evt.target.parentElement.id.split("--")[1]
-    const book = BookStore.books.find(m => parseInt(apiId) === m.id)
-
-    window.location = `/Book/Track/?apiId=${book.id}&title=${book.title}&img=${book.poster_path}`
-})
-
-
-$("#bookSearch__button").click(evt => {
+$("#AddFavoriteMovie").click(evt => {
     const userSearchString = $("#bookSearch").val()
     $.ajax({
         method: "GET",
 
-        url: `https://www.googleapis.com/books/v1/volumes?q=search+terms:${search}`
+        url: `https://www.googleapis.com/books/search/book?api_key=AIzaSyB6LNe_ZZEr85uPkxXTP3fT78vlrevye8U${moviedb.key}&language=en-US&query=${userSearchString}&page=1&include_adult=false`
     }).then(res => {
-        console.log("does this button work?", res)
-        BookStore.books = res.results
+        BookStore.movies = res.results
         let titles = "<div class='row'>"
         res.results.forEach((m, idx) => {
 
@@ -37,5 +27,3 @@ $("#bookSearch__button").click(evt => {
         $("#bookGrid").html(titles)
 
     })
-});
-//end
