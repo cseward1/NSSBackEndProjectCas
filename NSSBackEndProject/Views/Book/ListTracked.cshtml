@@ -1,0 +1,25 @@
+﻿
+@model NSSBackEndProject.Models.BookViewModel
+
+
+<h1>Yay! You tracked a book!</h1>
+
+<div id="bookGrid" class="container-fluid">
+
+    @foreach (var trackedBook in Model.TrackedUserBooks)
+    {
+        <div class='row'>
+            <div class="col-md-3 BookGrid__book"
+                 id="book--@Html.DisplayFor(modelItem => trackedBook.BookUserId)">
+
+                <h2 class="fakeLink">@Html.DisplayFor(modelItem => trackedBook.Title)</h2>
+                <img class="fakeLink"
+                     src="https://image.tmdb.org/t/p/w154/@Html.DisplayFor(modelItem => trackedBook.ImageURL)" />
+                <br /><br />
+                <button class="AddFavoriteBook">New Favorite Book</button>
+
+            </div>
+        </div>
+    }
+
+</div>

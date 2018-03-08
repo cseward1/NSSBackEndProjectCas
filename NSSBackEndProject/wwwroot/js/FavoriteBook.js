@@ -1,4 +1,4 @@
-﻿//Allow the Favorite Movie Button to bring the user to another page with their favorite movies listed 
+﻿//Allow the Favorite Book Button to bring the user to another page with their favorite movies listed 
 
 $("#AddFavoriteMovie").click(evt => {
     const userSearchString = $("#bookSearch").val()
@@ -7,7 +7,7 @@ $("#AddFavoriteMovie").click(evt => {
 
         url: `https://www.googleapis.com/books/search/book?api_key=AIzaSyB6LNe_ZZEr85uPkxXTP3fT78vlrevye8U${moviedb.key}&language=en-US&query=${userSearchString}&page=1&include_adult=false`
     }).then(res => {
-        BookStore.movies = res.results
+        BookStore.books = res.results
         let titles = "<div class='row'>"
         res.results.forEach((m, idx) => {
 
@@ -27,3 +27,4 @@ $("#AddFavoriteMovie").click(evt => {
         $("#bookGrid").html(titles)
 
     })
+})

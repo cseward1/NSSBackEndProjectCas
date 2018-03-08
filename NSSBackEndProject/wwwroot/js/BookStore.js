@@ -7,7 +7,7 @@ const BookStore = Object.create(null, {
             this[bookCollection] = []
         }
     },
-    movies: {
+    books: {
         set: function (bookArray) {
             this[bookCollection] = bookArray
         },
