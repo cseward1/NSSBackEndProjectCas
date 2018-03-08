@@ -10,11 +10,11 @@
     {
         <div class='row'>
             <div class="col-md-3 BookGrid__book"
-                 id="book--@Html.DisplayFor(modelItem => trackedBook.BookUserId)">
+                 id="book--@Html.DisplayFor(modelItem => trackedBook.BookId)">
 
-                <h2 class="fakeLink">@Html.DisplayFor(modelItem => trackedBook.Title)</h2>
+                <h2 class="fakeLink">@Html.DisplayFor(modelItem => trackedBook.BookTitle)</h2>
                 <img class="fakeLink"
-                     src="https://image.tmdb.org/t/p/w154/@Html.DisplayFor(modelItem => trackedBook.ImageURL)" />
+                src="https://image.tmdb.org/t/p/w154/@Html.DisplayFor(modelItem => trackedBook.BookImage)" />
                 <br /><br />
                 <button class="AddFavoriteBook">New Favorite Book</button>
 

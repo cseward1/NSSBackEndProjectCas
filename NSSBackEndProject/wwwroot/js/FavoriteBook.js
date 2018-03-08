@@ -1,11 +1,11 @@
 ﻿//Allow the Favorite Book Button to bring the user to another page with their favorite movies listed 
 
-$("#AddFavoriteMovie").click(evt => {
+$("#AddFavoriteBook").click(evt => {
     const userSearchString = $("#bookSearch").val()
     $.ajax({
         method: "GET",
 
-        url: `https://www.googleapis.com/books/search/book?api_key=AIzaSyB6LNe_ZZEr85uPkxXTP3fT78vlrevye8U${moviedb.key}&language=en-US&query=${userSearchString}&page=1&include_adult=false`
+        url: `https://www.googleapis.com/books/search/book?api_key=AIzaSyB6LNe_ZZEr85uPkxXTP3fT78vlrevye8U${bookdb.key}&language=en-US&query=${userSearchString}&page=1&include_adult=false`
     }).then(res => {
         BookStore.books = res.results
         let titles = "<div class='row'>"
@@ -13,8 +13,10 @@ $("#AddFavoriteMovie").click(evt => {
 
             titles += `
                 <div class="col-md-3 bookGrid__book" id="book--${m.id}">
-                    <h2 class="fakeLink">${m.title}</h2>
-                    <img class="fakeLink" src="https://image.tmdb.org/t/p/w154${m.poster_path}" />
+                    <h2 class="fakeLink">${m.volumeInfo.title}</h2>
+                    <h2 class="fakeLink">${m.volumeInfo.authors}</h2>
+                     <h2 class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</h2>
+                    <img class="fakeLink" src="https://www.googleapis.com/books/v1/volumes?q=${m.volumeInfo.imageLinks.thumbnail}" />
                 </div>
             `
             if ((idx + 1) % 4 === 0) {

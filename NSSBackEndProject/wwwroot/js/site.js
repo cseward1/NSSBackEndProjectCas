@@ -1,11 +1,11 @@
-﻿// Write your JavaScript code.
+﻿// Write your JavaScript code in the www.root folder:
 //include the search bar for the books:
 
 ﻿$("#bookGrid").on("click", evt => {
     const apiId = evt.target.parentElement.id.split("--")[1]
     const book = BookStore.books.find(m => parseInt(apiId) === m.id)
 
-    window.location = `/Book/Track/?apiId=${book.id}&title=${book.title}&authors={book.author}`
+    window.location = `/Book/Track/?apiId=${volumeInfo.id}&title=${volumeInfo.title}&authors=${volumeInfo.authors}&imageLinks=${volumeInfo.imageLinks.thumbnail}&description={volume.Info.description}`
 })
 
 
@@ -24,8 +24,10 @@ $("#bookSearch__button").click(evt => {
             console.log(m)
             titles += `
                 <div class="col-md-3 bookGrid__book" id="book--${m.id}">
-                    <h2 class="fakeLink">${m.title}</h2>
-                    <img class="fakeLink" src="https://image.tmdb.org/t/p/w154${m.poster_path}" />
+                    <h2 class="fakeLink">${m.volumeInfo.title}</h2>
+                    <h2 class="fakeLink">${m.volumeInfo.authors}</h2>
+                     <h2 class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</h2>     
+                    <img class="fakeLink" src="https://www.googleapis.com/books/v1/volumes?q=${m.volumeInfo.imageLinks.thumbnail}" />
                 </div>
             `
             if ((idx + 1) % 4 === 0) {
@@ -39,4 +41,3 @@ $("#bookSearch__button").click(evt => {
 
     })
 });
-//end
