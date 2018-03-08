@@ -14,7 +14,7 @@ $("#bookSearch__button").click(evt => {
     const userSearchString = $("#bookSearch").val()
     $.ajax({
         method: "GET",
-        url: `https://www.googleapis.com/books/v1/volumes?q=${userSearchString}`
+        url: `https://www.googleapis.com/books/v1/volumes?q=${userSearchString}&maxResults=40`
     }).then(res => {
         console.log("does this button work?", res)
         BookStore.books = res.items
@@ -26,11 +26,9 @@ $("#bookSearch__button").click(evt => {
             titles += `
                 <div class="col-md-3 bookGrid__book" id="book--${m.volumeInfo.id}">
                     <h2 class="fakeLink">${m.volumeInfo.title}</h2>
-                    <h2 class="fakeLink">${m.volumeInfo.authors}</h2>
-                    <h2 class="fakeLink">${m.volumeInfo.description}</h2>
-                     <img class="fakeLink" src=${m.volumeInfo.imageLinks.thumbnail} />    
-                    <img class="fakeLink" src="https://www.googleapis.com/books/v1/volumes?q=${m.volumeInfo.imageLinks.thumbnail}" />
-src="https://books.google.com/books?string thumbnail_url;
+                    <div class="fakeLink">${m.volumeInfo.authors}</div>
+                     <img class="fakeLink" src=${m.volumeInfo.imageLinks ? m.volumeInfo.imageLinks.thumbnail : "" } />    
+
                 </div>
             `
 
