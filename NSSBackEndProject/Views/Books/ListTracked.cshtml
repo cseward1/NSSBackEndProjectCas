@@ -6,7 +6,7 @@
 
 <div id="bookGrid" class="container-fluid">
 
-    @foreach (var trackedBook in Model.TrackedUserBooks)
+    @*@foreach (var trackedBook in Model.TrackedUserBooks)
     {
         <div class='row'>
             <div class="col-md-3 BookGrid__book"
@@ -14,12 +14,12 @@
 
                 <h2 class="fakeLink">@Html.DisplayFor(modelItem => trackedBook.BookTitle)</h2>
                 <img class="fakeLink"
-                src="https://image.tmdb.org/t/p/w154/@Html.DisplayFor(modelItem => trackedBook.BookImage)" />
+                src="https://www.googleapis.com/books/v1/volumes?q=@Html.DisplayFor(modelItem => trackedBook.BookImage)" />
                 <br /><br />
                 <button class="AddFavoriteBook">New Favorite Book</button>
 
             </div>
         </div>
-    }
+    }*@
 
 </div>

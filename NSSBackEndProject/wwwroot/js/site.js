@@ -2,10 +2,11 @@
 //include the search bar for the books:
 
 ﻿$("#bookGrid").on("click", evt => {
+    console.log("id", volumeInfo.id)
     const apiId = evt.target.parentElement.id.split("--")[1]
     const book = BookStore.books.find(m => parseInt(apiId) === m.id)
-
-    window.location = `/Book/Track/?apiId=${volumeInfo.id}&title=${volumeInfo.title}&authors=${volumeInfo.authors}&imageLinks=${volumeInfo.imageLinks.thumbnail}&description={volume.Info.description}`
+    window.location = `/Book/Track/?apiId=${volumeInfo.id}&title=${volumeInfo.title}&authors=${volumeInfo.authors}&imageLinks=${volumeInfo.imageLinks.thumbnail}&description={volumeInfo.description}`
+     
 })
 
 
@@ -23,7 +24,7 @@ $("#bookSearch__button").click(evt => {
         res.items.forEach((m, idx) => {
             console.log(m)
             titles += `
-                <div class="col-md-3 bookGrid__book" id="book--${m.id}">
+                <div class="col-md-3 bookGrid__book" id="book--${m.volumeInfo.id}">
                     <h2 class="fakeLink">${m.volumeInfo.title}</h2>
                     <h2 class="fakeLink">${m.volumeInfo.authors}</h2>
                      <h2 class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</h2>     
@@ -36,7 +37,7 @@ $("#bookSearch__button").click(evt => {
         })
 
         titles += "</div>"
-
+        console.log(titles)
         $("#bookGrid").html(titles)
 
     })
