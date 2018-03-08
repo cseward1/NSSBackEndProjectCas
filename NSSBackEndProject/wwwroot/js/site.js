@@ -25,7 +25,7 @@ $("#bookSearch__button").click(evt => {
             console.log(m)
             titles += `
                 <div class="col-md-3 bookGrid__book" id="book--${m.volumeInfo.id}">
-                    <h2 class="fakeLink">${m.volumeInfo.title}</h2>
+                    <h4 class="fakeLink"><strong>${m.volumeInfo.title}</strong></h4>
                     <div class="fakeLink">${m.volumeInfo.authors}</div>
                      <img class="fakeLink" src=${m.volumeInfo.imageLinks ? m.volumeInfo.imageLinks.thumbnail : "" } />    
 
