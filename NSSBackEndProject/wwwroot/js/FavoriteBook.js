@@ -15,7 +15,7 @@ $("#AddFavoriteBook").click(evt => {
                 <div class="col-md-3 bookGrid__book" id="book--${m.id}">
                     <h2 class="fakeLink">${m.volumeInfo.title}</h2>
                     <h2 class="fakeLink">${m.volumeInfo.authors}</h2>
-                     <h2 class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</h2>
+                     <img class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</img>
                     <img class="fakeLink" src="https://www.googleapis.com/books/v1/volumes?q=${m.volumeInfo.imageLinks.thumbnail}" />
                 </div>
             `
