@@ -12,6 +12,7 @@ const BookStore = Object.create(null, {
             this[bookCollection] = bookArray
         },
         get: function () {
+            console.log("books.getrunning", this[bookCollection])
             return this[bookCollection]
         }
     }

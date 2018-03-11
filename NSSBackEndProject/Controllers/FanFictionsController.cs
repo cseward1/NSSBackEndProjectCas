@@ -11,24 +11,28 @@ using Microsoft.AspNetCore.Identity;
 
 namespace NSSBackEndProject.Controllers
 {
-    public class BooksController : Controller
-    {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-
-        public BooksController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+         public class FanFictionsController : Controller { 
+         // create an instance of the UserManager to be able to retrieve the current active user:
+      private readonly UserManager<ApplicationUser> _userManager;
+      private readonly ApplicationDbContext _context;
+        
+        //create new instances of the manager and context:
+         public FanFictionsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
-        // GET: Books
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Book.ToListAsync());
-        }
+           // This task retrieves the currently authenticated user:
+           private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        //added code ends
 
-        // GET: Books/Details/5
+
+
+        // GET: FanFictions
+        public async Task<IActionResult> Index() => View(await _context.FanFiction.ToListAsync());
+
+        // GET: FanFictions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,51 +40,41 @@ namespace NSSBackEndProject.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Book
-                .SingleOrDefaultAsync(m => m.BookId == id);
-            if (book == null)
+            var fanFiction = await _context.FanFiction
+                .SingleOrDefaultAsync(m => m.FanFictionId == id);
+            if (fanFiction == null)
             {
                 return NotFound();
             }
 
-            return View(book);
+            return View(fanFiction);
         }
 
-        // This task retrieves the currently authenticated user
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-
-        public async Task<IActionResult> FavoriteBook()
-        {
-            ApplicationUser user = await GetCurrentUserAsync();
-
-            var model = new Book();
-            //model.TrackedUserBooks = GetUserTrackedBooks(user);
-
-            return View(model);
-        }
-        // GET: Books/Create
+        // GET: FanFictions/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Books/Create
+        // POST: FanFictions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookId,BookTitle,BookImage,Author,Genre,Description,Hashtags")] Book book)
+        public async Task<IActionResult> Create([Bind("FanFictionId,BookId,FanFictionEssay,Comments,ApprovalRating")] FanFiction fanFiction)
         {
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
-                _context.Add(book);
+                fanFiction.User = await GetCurrentUserAsync();
+                _context.Add(fanFiction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(book);
+            return View(fanFiction);
         }
 
-        // GET: Books/Edit/5
+        // GET: FanFictions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,22 +82,22 @@ namespace NSSBackEndProject.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Book.SingleOrDefaultAsync(m => m.BookId == id);
-            if (book == null)
+            var fanFiction = await _context.FanFiction.SingleOrDefaultAsync(m => m.FanFictionId == id);
+            if (fanFiction == null)
             {
                 return NotFound();
             }
-            return View(book);
+            return View(fanFiction);
         }
 
-        // POST: Books/Edit/5
+        // POST: FanFictions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookId,BookTitle,BookImage,Author,Genre,Description,Hashtags")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("FanFictionId,BookId,FanFictionEssay,Comments,ApprovalRating")] FanFiction fanFiction)
         {
-            if (id != book.BookId)
+            if (id != fanFiction.FanFictionId)
             {
                 return NotFound();
             }
@@ -112,12 +106,12 @@ namespace NSSBackEndProject.Controllers
             {
                 try
                 {
-                    _context.Update(book);
+                    _context.Update(fanFiction);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BookExists(book.BookId))
+                    if (!FanFictionExists(fanFiction.FanFictionId))
                     {
                         return NotFound();
                     }
@@ -128,10 +122,10 @@ namespace NSSBackEndProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(book);
+            return View(fanFiction);
         }
 
-        // GET: Books/Delete/5
+        // GET: FanFictions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,30 +133,30 @@ namespace NSSBackEndProject.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Book
-                .SingleOrDefaultAsync(m => m.BookId == id);
-            if (book == null)
+            var fanFiction = await _context.FanFiction
+                .SingleOrDefaultAsync(m => m.FanFictionId == id);
+            if (fanFiction == null)
             {
                 return NotFound();
             }
 
-            return View(book);
+            return View(fanFiction);
         }
 
-        // POST: Books/Delete/5
+        // POST: FanFictions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var book = await _context.Book.SingleOrDefaultAsync(m => m.BookId == id);
-            _context.Book.Remove(book);
+            var fanFiction = await _context.FanFiction.SingleOrDefaultAsync(m => m.FanFictionId == id);
+            _context.FanFiction.Remove(fanFiction);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BookExists(int id)
+        private bool FanFictionExists(int id)
         {
-            return _context.Book.Any(e => e.BookId == id);
+            return _context.FanFiction.Any(e => e.FanFictionId == id);
         }
     }
 }

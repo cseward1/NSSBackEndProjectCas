@@ -1,6 +1,7 @@
 ﻿//Allow the Favorite Book Button to bring the user to another page with their favorite movies listed 
 
-$("#AddFavoriteBook").click(evt => {
+$(".AnotherFavoriteBookAdded").click(evt => {
+    console.log("this button fired")
     const userSearchString = $("#bookSearch").val()
     $.ajax({
         method: "GET",
@@ -13,10 +14,10 @@ $("#AddFavoriteBook").click(evt => {
 
             titles += `
                 <div class="col-md-3 bookGrid__book" id="book--${m.id}">
+                    <img class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</img>
                     <h2 class="fakeLink">${m.volumeInfo.title}</h2>
                     <h2 class="fakeLink">${m.volumeInfo.authors}</h2>
-                     <img class="fakeLink">${m.volumeInfo.imageLinks.thumbnail}</img>
-                    <img class="fakeLink" src="https://www.googleapis.com/books/v1/volumes?q=${m.volumeInfo.imageLinks.thumbnail}" />
+                    
                 </div>
             `
             if ((idx + 1) % 4 === 0) {
