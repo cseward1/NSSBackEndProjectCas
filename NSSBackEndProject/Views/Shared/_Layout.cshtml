@@ -27,11 +27,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">NSSBackEndProject</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">MyGoodReads</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="FanFictions" asp-action="Create">Fan Fiction</a></li>
+                    <li><a asp-area="" asp-controller="FanFictions" asp-action="Create">Write Fan Fiction</a></li>
+                    <li><a asp-area="" asp-controller="FanFictions" asp-action="Index">My Fan Fiction </a></li>
+                    <li><a asp-area="" asp-controller="Books" asp-action="Index">My BookShelf</a></li>
                    @* <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
@@ -44,6 +46,9 @@
             </div>
         </div>
     </nav>
+    <ul>
+
+    </ul>
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using NSSBackEndProject.Data;
 using System;
 
@@ -267,11 +265,14 @@ namespace NSSBackEndProject.Data.Migrations
                     b.Property<int>("FanFictionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("ApprovalRating");
+                    b.Property<int?>("BookId");
 
-                    b.Property<int>("BookId");
+                    b.Property<int>("BookTitle");
 
                     b.Property<string>("Comments")
+                        .IsRequired();
+
+                    b.Property<string>("EssayTitle")
                         .IsRequired();
 
                     b.Property<string>("FanFictionEssay")
@@ -281,6 +282,8 @@ namespace NSSBackEndProject.Data.Migrations
                         .IsRequired();
 
                     b.HasKey("FanFictionId");
+
+                    b.HasIndex("BookId");
 
                     b.HasIndex("UserId");
 
@@ -440,6 +443,10 @@ namespace NSSBackEndProject.Data.Migrations
 
             modelBuilder.Entity("NSSBackEndProject.Models.FanFiction", b =>
                 {
+                    b.HasOne("NSSBackEndProject.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId");
+
                     b.HasOne("NSSBackEndProject.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")

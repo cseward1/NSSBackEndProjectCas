@@ -3,8 +3,9 @@
 
 ﻿$("#bookGrid").on("click", evt => {
     
-    const apiId = evt.target.parentElement.id.split("--")[1]
-    const book = BookStore.books.find(m => parseInt(apiId) === m.id)
+     const apiId = evt.target.parentElement.id.split("--")[1]
+     console.log(apiId)
+    const book = BookStore.books.find(m => apiId === m.id)
     console.log(book)
     window.location = `/Book/Track/?apiId=${apiId}&title=${book.volumeInfo.title}&authors=${book.volumeInfo.authors}&imageLinks=${book.volumeInfo.imageLinks.thumbnail}&description=${book.volumeInfo.description}`
      
