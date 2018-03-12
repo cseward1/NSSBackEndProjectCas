@@ -158,5 +158,11 @@ namespace NSSBackEndProject.Controllers
         {
             return _context.FanFiction.Any(e => e.FanFictionId == id);
         }
+
+            public ActionResult UploadDocument()
+            {
+                return View();
+            }
+        
     }
 }
