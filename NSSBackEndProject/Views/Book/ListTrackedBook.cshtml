@@ -1,8 +1,17 @@
-﻿@model NSSBackEndProject.Models.Book
+﻿@model NSSBackEndProject.Models.BookViewModels.TrackedBooksViewModel
 
 @{
     ViewData["Title"] = "ListTrackedBook";
 }
+<div id="bookGrid" class="container-fluid">
+    <h2>ListTrackedBook</h2>
+        @foreach (var trackedBook in Model.ApplicationUser)
+        {
+            <div class="row">
+                <div class="col-md-3 bookGrid__book"
 
-<h2>ListTrackedBook</h2>
+            </div>
 
+        }
+    </div>
+</div>

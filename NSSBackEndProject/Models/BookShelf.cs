@@ -24,8 +24,7 @@ namespace NSSBackEndProject.Models
         [Required]
         public string Author { get; set; }
 
-        [Required]
-        public string Genre { get; set; }
+     
 
         [Required]
         public string Description { get; set; }

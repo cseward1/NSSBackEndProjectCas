@@ -11,9 +11,10 @@ using System;
 namespace NSSBackEndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180313212536_AddButton")]
+    partial class AddButton
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,6 +207,9 @@ namespace NSSBackEndProject.Migrations
                         .IsRequired();
 
                     b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<string>("Hashtags")
                         .IsRequired();
 
                     b.HasKey("BookId");

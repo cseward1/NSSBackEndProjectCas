@@ -37,7 +37,6 @@ namespace NSSBackEndProject.Controllers
             return View(model);
         }
         [HttpPost]
-        [Route("[controller]/[action]/{apiId}")]
         public async Task<IActionResult> Track(string apiId, string title, string bookImage, string bookAuthor, string bookGenre, string bookDescription, string img)
         {
             //gets the current user
@@ -55,7 +54,7 @@ namespace NSSBackEndProject.Controllers
                 BookTitle = title,
                 BookImage = bookImage,
                 Author = bookAuthor,
-                Genre = bookGenre,
+                
                 Description = bookDescription,
             };
             _context.Add(book);
@@ -66,8 +65,8 @@ namespace NSSBackEndProject.Controllers
             {
 
                 User = user,
-                BookId = book.BookId
-
+                BookId = book.BookId,
+               
 
             };
 
@@ -89,7 +88,7 @@ namespace NSSBackEndProject.Controllers
                         User = mu.User,
                         BookTitle = m.BookTitle,
                         BookImage = m.BookImage,
-                        Genre = mu.Genre,
+                     
                        // Favorited = mu.Favorited,
                         //Watched = mu.Watched
                     }).ToList();

@@ -7,7 +7,12 @@
      console.log(apiId)
     const book = BookStore.books.find(m => apiId === m.id)
     console.log(book)
-    window.location = `/Book/Track/?apiId=${apiId}&title=${book.volumeInfo.title}&authors=${book.volumeInfo.authors}&imageLinks=${book.volumeInfo.imageLinks.thumbnail}&description=${book.volumeInfo.description}`
+    $.ajax({
+        method: "POST",
+        url: `/Books/Track?apiId=${apiId}&title=${book.volumeInfo.title}&bookAuthor=${book.volumeInfo.authors}&bookImage=${book.volumeInfo.imageLinks.thumbnail}&bookDescription=${book.volumeInfo.description}`
+    })
+
+ 
      
 })
 
