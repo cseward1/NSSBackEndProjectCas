@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using NSSBackEndProject.Data;
 using NSSBackEndProject.Models;
 using Microsoft.AspNetCore.Identity;
+using NSSBackEndProject.Models.BookViewModels;
 
 namespace NSSBackEndProject.Controllers
 {
@@ -18,9 +19,98 @@ namespace NSSBackEndProject.Controllers
 
         public BooksController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
+     
             _context = context;
             _userManager = userManager;
         }
+        //create list tracked and tracked methods to add the book and the book's information to the database and unto the user's bookshelf page:
+        // This task retrieves the currently authenticated user
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+        public async Task<IActionResult> ListTrackedBook()
+        {
+            ApplicationUser user = await GetCurrentUserAsync();
+
+            var model = new TrackedBooksViewModel();
+            model.ApplicationUser = GetUserTrackedBooks(user);
+
+            return View(model);
+        }
+        [HttpPost]
+        [Route("[controller]/[action]/{apiId}")]
+        public async Task<IActionResult> Track(string apiId, string title, string bookImage, string bookAuthor, string bookGenre, string bookDescription, string img)
+        {
+            //gets the current user
+            ApplicationUser user = await GetCurrentUserAsync();
+
+            if (IsBookShelf(apiId, user))
+            {
+                return RedirectToActionPermanent("ListTrackedBook");
+            }
+
+            //add movie to database
+            Book book = new Book
+            {
+                ApiId = apiId,
+                BookTitle = title,
+                BookImage = bookImage,
+                Author = bookAuthor,
+                Genre = bookGenre,
+                Description = bookDescription,
+            };
+            _context.Add(book);
+
+
+            //track that movie for the current user
+            var trackBook = new BookUser
+            {
+
+                User = user,
+                BookId = book.BookId
+
+
+            };
+
+
+            _context.Add(trackBook);
+            await _context.SaveChangesAsync();
+
+            return RedirectToActionPermanent("ListTrackedBook");
+        }
+
+        public ICollection<BookShelf> GetUserTrackedBooks(ApplicationUser user)
+        {
+            return (from m in _context.Book
+                    join mu in _context.BookUser
+                      on m.BookId equals mu.BookId
+                    where mu.User == user
+                    select new BookShelf
+                    {
+                        User = mu.User,
+                        BookTitle = m.BookTitle,
+                        BookImage = m.BookImage,
+                        Genre = mu.Genre,
+                       // Favorited = mu.Favorited,
+                        //Watched = mu.Watched
+                    }).ToList();
+        }
+
+        public bool IsBookShelf(string bookId, ApplicationUser user)
+        {
+            var isTracked = _context.BookUser
+                .Include("Book")
+                .Where(mu => mu.Book.ApiId == bookId && mu.User == user)
+                .FirstOrDefault();
+
+            if (isTracked == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //end the list tracked and tracked code:
 
         // GET: Books
         public async Task<IActionResult> Index()
@@ -47,17 +137,17 @@ namespace NSSBackEndProject.Controllers
         }
 
         // This task retrieves the currently authenticated user
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        //private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        public async Task<IActionResult> FavoriteBook()
-        {
-            ApplicationUser user = await GetCurrentUserAsync();
+        //public async Task<IActionResult> FavoriteBook()
+        //{
+        //    ApplicationUser user = await GetCurrentUserAsync();
 
-            var model = new Book();
-            //model.TrackedUserBooks = GetUserTrackedBooks(user);
+        //    var model = new Book();
+        //    //model.TrackedUserBooks = GetUserTrackedBooks(user);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
         // GET: Books/Create
         public IActionResult Create()
         {

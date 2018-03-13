@@ -30,6 +30,7 @@ namespace NSSBackEndProject.Models
         public string Hashtags { get; set; }
 
         [Required]
-        public int ApiId { get; set; }
+        public string ApiId { get; set; }
+
     }
 }

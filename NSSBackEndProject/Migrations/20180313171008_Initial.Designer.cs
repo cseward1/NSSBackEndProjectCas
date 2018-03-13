@@ -3,15 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using NSSBackEndProject.Data;
 using System;
 
-namespace NSSBackEndProject.Data.Migrations
+namespace NSSBackEndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180313171008_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +194,8 @@ namespace NSSBackEndProject.Data.Migrations
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApiId");
+                    b.Property<string>("ApiId")
+                        .IsRequired();
 
                     b.Property<string>("Author")
                         .IsRequired();
@@ -246,18 +250,56 @@ namespace NSSBackEndProject.Data.Migrations
                     b.Property<int>("BookShelfId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Author")
+                        .IsRequired();
+
                     b.Property<int>("BookId");
+
+                    b.Property<string>("BookImage")
+                        .IsRequired();
+
+                    b.Property<string>("BookTitle")
+                        .IsRequired();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<string>("Genre")
+                        .IsRequired();
 
                     b.Property<string>("UserId")
                         .IsRequired();
 
                     b.HasKey("BookShelfId");
 
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BookShelf");
+                });
+
+            modelBuilder.Entity("NSSBackEndProject.Models.BookUser", b =>
+                {
+                    b.Property<int>("BookUserId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BookId");
+
+                    b.Property<bool>("Favorited");
+
+                    b.Property<string>("Genre");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.Property<bool>("Watched");
+
+                    b.HasKey("BookUserId");
+
                     b.HasIndex("BookId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookShelf");
+                    b.ToTable("BookUser");
                 });
 
             modelBuilder.Entity("NSSBackEndProject.Models.FanFiction", b =>
@@ -265,9 +307,9 @@ namespace NSSBackEndProject.Data.Migrations
                     b.Property<int>("FanFictionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("BookId");
+                    b.Property<bool>("ApprovalRating");
 
-                    b.Property<int>("BookTitle");
+                    b.Property<int>("BookId");
 
                     b.Property<string>("Comments")
                         .IsRequired();
@@ -430,13 +472,21 @@ namespace NSSBackEndProject.Data.Migrations
 
             modelBuilder.Entity("NSSBackEndProject.Models.BookShelf", b =>
                 {
+                    b.HasOne("NSSBackEndProject.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("NSSBackEndProject.Models.BookUser", b =>
+                {
                     b.HasOne("NSSBackEndProject.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("NSSBackEndProject.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("BookUsers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -445,7 +495,8 @@ namespace NSSBackEndProject.Data.Migrations
                 {
                     b.HasOne("NSSBackEndProject.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId");
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("NSSBackEndProject.Models.ApplicationUser", "User")
                         .WithMany()

@@ -5,6 +5,16 @@
     <UserSecretsId>aspnet-NSSBackEndProject-32101C52-B5F6-4DA7-8802-52EA0F4453AB</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\Book\FavoriteBook.cshtml.cs" />
+    <Compile Remove="Views\Book\ListTracked.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Book\FavoriteBook.cshtml" />
+    <Content Remove="Views\Book\ListTracked.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
