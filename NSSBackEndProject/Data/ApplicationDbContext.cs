@@ -17,6 +17,7 @@ namespace NSSBackEndProject.Data
         }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Book> Book { get; set; }
+        public DbSet<BookUser> BookUser { get; set; }
         public DbSet<BookQuiz> BookQuiz { get; set; }
         public DbSet<BookShelf> BookShelf  { get; set; }
         public DbSet<FanFiction> FanFiction { get; set; }

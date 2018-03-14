@@ -13,9 +13,13 @@ namespace NSSBackEndProject.Models
 
         [Required]
         public int BookId { get; set; }
+        public Book Book { get; set; }
 
         [Required]
         public ApplicationUser User { get; set; }
+
+        [Required]
+        public string EssayTitle { get; set; }
 
         [Required]
         public string FanFictionEssay { get; set; }

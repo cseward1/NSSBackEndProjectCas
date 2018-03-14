@@ -22,7 +22,7 @@ namespace NSSBackEndProject.Models
         [Display(Name = "Reading Interests?")]
         public string ReadingInterests { get; set; }
 
-
+        public virtual ICollection<BookUser> BookUsers { get; set; }
 
     }
 }
