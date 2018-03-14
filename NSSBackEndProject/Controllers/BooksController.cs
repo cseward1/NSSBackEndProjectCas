@@ -47,7 +47,7 @@ namespace NSSBackEndProject.Controllers
                 return RedirectToActionPermanent("ListTrackedBook");
             }
 
-            //add movie to database
+            //add book to database
             Book book = new Book
             {
                 ApiId = apiId,
@@ -60,7 +60,7 @@ namespace NSSBackEndProject.Controllers
             _context.Add(book);
 
 
-            //track that movie for the current user
+            //track that book for the current user
             var trackBook = new BookUser
             {
 
@@ -88,6 +88,7 @@ namespace NSSBackEndProject.Controllers
                         
                         BookTitle = m.BookTitle,
                         BookImage = m.BookImage,
+                        Author = m.Author
                      
                        // Favorited = mu.Favorited,
                         //Watched = mu.Watched
