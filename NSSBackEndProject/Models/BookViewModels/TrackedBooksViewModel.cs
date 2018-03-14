@@ -7,6 +7,6 @@ namespace NSSBackEndProject.Models.BookViewModels
 {
     public class TrackedBooksViewModel
     {
-        public ICollection<BookShelf> ApplicationUser { get; set; }
+        public ICollection<Book> BookShelf { get; set; }
     }
 }

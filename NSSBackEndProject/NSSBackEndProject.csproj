@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Book\FavoriteBook.cshtml.cs" />
-    <Compile Remove="Views\Book\ListTracked.cshtml.cs" />
+    <Compile Remove="Views\Books\FavoriteBook.cshtml.cs" />
+    <Compile Remove="Views\Books\ListTracked.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Book\FavoriteBook.cshtml" />
-    <Content Remove="Views\Book\ListTracked.cshtml" />
+    <Content Remove="Views\Books\FavoriteBook.cshtml" />
+    <Content Remove="Views\Books\ListTracked.cshtml" />
   </ItemGroup>
 
 

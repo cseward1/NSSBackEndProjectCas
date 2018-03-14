@@ -5,13 +5,13 @@
 }
 <div id="bookGrid" class="container-fluid">
     <h2>ListTrackedBook</h2>
-        @foreach (var trackedBook in Model.ApplicationUser)
+        @foreach (var trackedBook in @Model.BookShelf)
         {
             <div class="row">
-                <div class="col-md-3 bookGrid__book"
-
+                <div class="col-md-3 bookGrid__book">
+                    <h2>@trackedBook.BookTitle</h2>
+                </div>
             </div>
-
         }
+    
     </div>
-</div>

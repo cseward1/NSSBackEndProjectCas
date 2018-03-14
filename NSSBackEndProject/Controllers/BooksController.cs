@@ -32,7 +32,7 @@ namespace NSSBackEndProject.Controllers
             ApplicationUser user = await GetCurrentUserAsync();
 
             var model = new TrackedBooksViewModel();
-            model.ApplicationUser = GetUserTrackedBooks(user);
+            model.BookShelf = GetUserTrackedBooks(user);
 
             return View(model);
         }
@@ -77,15 +77,15 @@ namespace NSSBackEndProject.Controllers
             return RedirectToActionPermanent("ListTrackedBook");
         }
 
-        public ICollection<BookShelf> GetUserTrackedBooks(ApplicationUser user)
+        public ICollection<Book> GetUserTrackedBooks(ApplicationUser user)
         {
             return (from m in _context.Book
                     join mu in _context.BookUser
                       on m.BookId equals mu.BookId
                     where mu.User == user
-                    select new BookShelf
+                    select new Book
                     {
-                        User = mu.User,
+                        
                         BookTitle = m.BookTitle,
                         BookImage = m.BookImage,
                      
