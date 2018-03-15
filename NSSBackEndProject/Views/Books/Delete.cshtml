@@ -1,4 +1,4 @@
-﻿@model NSSBackEndProject.Models.Book
+﻿@model NSSBackEndProject.Models.BookUser
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,46 +12,36 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookTitle)
+            @Html.DisplayNameFor(model => model.Book.BookTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.BookTitle)
+            @Html.DisplayFor(model => model.Book.BookTitle)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.BookImage)
+            @Html.DisplayNameFor(model => model.Book.BookImage)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.BookImage)
+            @Html.DisplayFor(model => model.Book.BookImage)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayNameFor(model => model.Book.Author)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.DisplayFor(model => model.Book.Author)
         </dd>
+       
         <dt>
-            @Html.DisplayNameFor(model => model.Genre)
+            @Html.DisplayNameFor(model => model.Book.Description)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Genre)
+            @Html.DisplayFor(model => model.Book.Description)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Hashtags)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Hashtags)
-        </dd>
+      
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="BookId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="ListTracked">Back to List</a>
     </form>
 </div>

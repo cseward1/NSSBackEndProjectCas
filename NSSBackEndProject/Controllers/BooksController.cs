@@ -47,7 +47,7 @@ namespace NSSBackEndProject.Controllers
                 return RedirectToActionPermanent("ListTrackedBook");
             }
 
-            //add movie to database
+            //add book to database
             Book book = new Book
             {
                 ApiId = apiId,
@@ -60,7 +60,7 @@ namespace NSSBackEndProject.Controllers
             _context.Add(book);
 
 
-            //track that movie for the current user
+            //track that book for the current user
             var trackBook = new BookUser
             {
 
@@ -85,9 +85,10 @@ namespace NSSBackEndProject.Controllers
                     where mu.User == user
                     select new Book
                     {
-                        
+                        BookId = m.BookId,
                         BookTitle = m.BookTitle,
                         BookImage = m.BookImage,
+                        Author = m.Author
                      
                        // Favorited = mu.Favorited,
                         //Watched = mu.Watched
@@ -227,28 +228,55 @@ namespace NSSBackEndProject.Controllers
             {
                 return NotFound();
             }
-
-            var book = await _context.Book
-                .SingleOrDefaultAsync(m => m.BookId == id);
+            ApplicationUser user = await GetCurrentUserAsync();
+            var book = await _context.BookUser
+                .SingleAsync(m => m.BookId == id && m.User == user );
             if (book == null)
             {
-                return NotFound();
+                return NotFound("book wasnt found");
             }
 
             return View(book);
         }
 
+
+        // POST: Books/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var book = await _context.Book.SingleOrDefaultAsync(m => m.BookId == id);
+        //    _context.Book.Remove(book);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(ListTrackedBook));
+            
+        //}
+
+        //new method for deleting a book from a specific users bookshelf:
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteBook(int? id)
         {
-            var book = await _context.Book.SingleOrDefaultAsync(m => m.BookId == id);
-            _context.Book.Remove(book);
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ApplicationUser user = await GetCurrentUserAsync();
+            var bookshelf = await _context.BookUser.SingleOrDefaultAsync(bs => bs.BookId == id && bs.User == user);
+            _context.BookUser.Remove(bookshelf);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ListTrackedBook));
+            if (bookshelf == null)
+            {
+                return NotFound("book wasnt found");
+            }
+
+            return View(bookshelf);
         }
 
+
+    
         private bool BookExists(int id)
         {
             return _context.Book.Any(e => e.BookId == id);

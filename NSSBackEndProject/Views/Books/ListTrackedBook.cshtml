@@ -3,14 +3,25 @@
 @{
     ViewData["Title"] = "ListTrackedBook";
 }
-<div id="bookGrid" class="container-fluid">
-    <h2>ListTrackedBook</h2>
+<div id="bookGrid">
+    <h2>My BookShelf</h2>
         @foreach (var trackedBook in @Model.BookShelf)
         {
             <div class="row">
                 <div class="col-md-3 bookGrid__book">
-                    <h2>@trackedBook.BookTitle</h2>
+                    @*<img src="@trackedBook.BookImage">*@
+                    <h6>@trackedBook.BookId</h6>
+                    <h4><strong>@trackedBook.BookTitle</strong></h4>
+                    <p>@trackedBook.Author</p>
+                    
+
+                     <img class="fakeLink"
+                     src="@Html.DisplayFor(modelItem => trackedBook.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" />
                 </div>
+            </div>
+            //create the delete button:
+            <div>     
+                <a asp-action="Delete" asp-route-id="@trackedBook.BookId">Delete</a>
             </div>
         }
     
