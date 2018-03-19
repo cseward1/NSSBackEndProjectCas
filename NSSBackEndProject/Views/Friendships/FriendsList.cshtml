@@ -1,0 +1,10 @@
+﻿@model List<ApplicationUser>
+@{
+    Layout = null;
+}
+
+@foreach (var friend in Model)
+{
+    <p>@friend.FirstName</p>
+    <p>@friend.LastName</p>
+}

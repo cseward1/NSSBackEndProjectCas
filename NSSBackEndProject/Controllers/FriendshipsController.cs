@@ -19,9 +19,19 @@ namespace NSSBackEndProject.Controllers
             _context = context;
         }
         //create new method to display the MyFriends View:
+        [HttpGet]
         public async Task<IActionResult> MyFriends()
         {
             return View(await _context.Friendship.ToListAsync());
+        }
+
+        //create new method to display the MyFriends View:
+        [HttpPost]
+        public async Task<IActionResult> FriendsList(string SearchFriends)
+        //u equals user
+    
+        {
+            return View(await _context.ApplicationUser.Where(u => (u.FirstName + " " + u.LastName).Contains(SearchFriends)).ToListAsync());
         }
 
         // GET: Index
