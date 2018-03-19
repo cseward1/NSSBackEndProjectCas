@@ -18,8 +18,13 @@ namespace NSSBackEndProject.Controllers
         {
             _context = context;
         }
+        //create new method to display the MyFriends View:
+        public async Task<IActionResult> MyFriends()
+        {
+            return View(await _context.Friendship.ToListAsync());
+        }
 
-        // GET: Friendships
+        // GET: Index
         public async Task<IActionResult> Index()
         {
             return View(await _context.Friendship.ToListAsync());
@@ -144,6 +149,8 @@ namespace NSSBackEndProject.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+   
 
         private bool FriendshipExists(int id)
         {

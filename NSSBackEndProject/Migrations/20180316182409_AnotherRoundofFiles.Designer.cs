@@ -11,9 +11,10 @@ using System;
 namespace NSSBackEndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180316182409_AnotherRoundofFiles")]
+    partial class AnotherRoundofFiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

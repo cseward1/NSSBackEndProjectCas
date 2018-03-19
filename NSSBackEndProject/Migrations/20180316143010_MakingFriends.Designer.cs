@@ -11,9 +11,10 @@ using System;
 namespace NSSBackEndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180316143010_MakingFriends")]
+    partial class MakingFriends
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,8 +302,7 @@ namespace NSSBackEndProject.Migrations
 
                     b.Property<int?>("BookId");
 
-                    b.Property<string>("BookTitle")
-                        .IsRequired();
+                    b.Property<int>("BookTitle");
 
                     b.Property<string>("Comments")
                         .IsRequired();
@@ -310,7 +310,8 @@ namespace NSSBackEndProject.Migrations
                     b.Property<string>("EssayTitle")
                         .IsRequired();
 
-                    b.Property<string>("FileURL");
+                    b.Property<string>("FanFictionEssay")
+                        .IsRequired();
 
                     b.Property<string>("UserId")
                         .IsRequired();

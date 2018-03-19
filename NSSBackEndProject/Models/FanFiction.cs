@@ -12,7 +12,7 @@ namespace NSSBackEndProject.Models
         public int FanFictionId { get; set; }
 
         [Required]
-        public int BookId { get; set; }
+        public string BookTitle { get; set; }
         public Book Book { get; set; }
 
         [Required]
@@ -21,8 +21,8 @@ namespace NSSBackEndProject.Models
         [Required]
         public string EssayTitle { get; set; }
 
-        [Required]
-        public string FanFictionEssay { get; set; }
+        
+        public string FileURL { get; set; }
         
         [Required]
         public string Comments { get; set; }

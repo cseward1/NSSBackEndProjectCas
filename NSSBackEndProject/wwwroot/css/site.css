@@ -1,35 +1,60 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
+    background-image: url("../images/.jpeg");
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
-/* Carousel */
+/* Carousel 
 .carousel-caption p {
     font-size: 20px;
     line-height: 1.4;
 }
-
-/* Make .svg files in the carousel display properly in older browsers */
+*/
+/* Make .svg files in the carousel display properly in older browsers
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
 }
-
+     */
 /* QR code generator */
 #qrCode {
     margin: 15px;
 }
 
-/* Hide/rearrange for smaller screens */
+/* Hide/rearrange for smaller screens
 @media screen and (max-width: 767px) {
-    /* Hide captions */
+  
     .carousel-caption {
         display: none;
     }
+}
+     */
+#bookSearch {
+    list-style-type: none;
+    text-decoration: none;
+    /* font: 60px; */
+    /* border: inset; */
+    /* border-radius: 120px; */
+    padding-top: 21px;
+    padding-bottom: 21px;
+    /* padding-left: 25px; */
+    /* padding-right: 25px; */
+    font-family: 'Barlow', sans-serif;
+    font-size: 25px;
+    width: 365px;
+    /* position: absolute; */
+    height: 30px;
+    /* width: 400px; */
+    margin: -15px 2px 1px -20px;
+    top: 31%;
+    left: 13.5%;
+    /* margin-top: 50px; */
+    background-color: floralwhite;
+    
 }

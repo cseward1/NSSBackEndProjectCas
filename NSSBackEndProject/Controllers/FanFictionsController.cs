@@ -7,30 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NSSBackEndProject.Data;
 using NSSBackEndProject.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace NSSBackEndProject.Controllers
 {
-         public class FanFictionsController : Controller { 
-         // create an instance of the UserManager to be able to retrieve the current active user:
-      private readonly UserManager<ApplicationUser> _userManager;
-      private readonly ApplicationDbContext _context;
-        
-        //create new instances of the manager and context:
-         public FanFictionsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+    public class FanFictionsController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public FanFictionsController(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
-           // This task retrieves the currently authenticated user:
-           private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-        //added code ends
-
-
-
         // GET: FanFictions
-        public async Task<IActionResult> Index() => View(await _context.FanFiction.ToListAsync());
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.FanFiction.ToListAsync());
+        }
 
         // GET: FanFictions/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -61,12 +54,10 @@ namespace NSSBackEndProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FanFictionId,BookId,FanFictionEssay,Comments,ApprovalRating")] FanFiction fanFiction)
+        public async Task<IActionResult> Create([Bind("FanFictionId,BookTitle,EssayTitle,FileURL,Comments,ApprovalRating")] FanFiction fanFiction)
         {
-            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
-                fanFiction.User = await GetCurrentUserAsync();
                 _context.Add(fanFiction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,7 +86,7 @@ namespace NSSBackEndProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FanFictionId,BookId,FanFictionEssay,Comments,ApprovalRating")] FanFiction fanFiction)
+        public async Task<IActionResult> Edit(int id, [Bind("FanFictionId,BookTitle,EssayTitle,FileURL,Comments,ApprovalRating")] FanFiction fanFiction)
         {
             if (id != fanFiction.FanFictionId)
             {
@@ -158,11 +149,5 @@ namespace NSSBackEndProject.Controllers
         {
             return _context.FanFiction.Any(e => e.FanFictionId == id);
         }
-
-            public ActionResult UploadDocument()
-            {
-                return View();
-            }
-        
     }
 }

@@ -1,10 +1,17 @@
 ﻿@model NSSBackEndProject.Models.FanFiction
 
 @{
-    ViewData["Title"] = "Delete";
+    Layout = null;
 }
 
-<h2>Delete</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -12,16 +19,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookId)
+            @Html.DisplayNameFor(model => model.BookTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.BookId)
+            @Html.DisplayFor(model => model.BookTitle)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FanFictionEssay)
+            @Html.DisplayNameFor(model => model.EssayTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.FanFictionEssay)
+            @Html.DisplayFor(model => model.EssayTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileURL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FileURL)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Comments)
@@ -43,3 +56,5 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+</body>
+</html>
