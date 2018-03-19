@@ -1,26 +1,39 @@
 ﻿@model NSSBackEndProject.Models.FanFiction
 
 @{
-    ViewData["Title"] = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
 
 <div>
     <h4>FanFiction</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookId)
+            @Html.DisplayNameFor(model => model.BookTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.BookId)
+            @Html.DisplayFor(model => model.BookTitle)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FanFictionEssay)
+            @Html.DisplayNameFor(model => model.EssayTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.FanFictionEssay)
+            @Html.DisplayFor(model => model.EssayTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileURL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FileURL)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Comments)
@@ -40,3 +53,5 @@
     <a asp-action="Edit" asp-route-id="@Model.FanFictionId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+</body>
+</html>

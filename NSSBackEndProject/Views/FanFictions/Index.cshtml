@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<NSSBackEndProject.Models.FanFiction>
 
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -13,10 +19,13 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.BookId)
+                    @Html.DisplayNameFor(model => model.BookTitle)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FanFictionEssay)
+                    @Html.DisplayNameFor(model => model.EssayTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileURL)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Comments)
@@ -31,10 +40,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BookId)
+                @Html.DisplayFor(modelItem => item.BookTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FanFictionEssay)
+                @Html.DisplayFor(modelItem => item.EssayTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileURL)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comments)
@@ -51,3 +63,5 @@
 }
     </tbody>
 </table>
+</body>
+</html>
