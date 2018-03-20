@@ -5,6 +5,8 @@
 
 @foreach (var friend in Model)
 {
-    <p>@friend.FirstName</p>
-    <p>@friend.LastName</p>
+    <p>@friend.FirstName
+    @friend.LastName <button id="SendFriendRequest">Friend Request?</button></p>
+
+
 }

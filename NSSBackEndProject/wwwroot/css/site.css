@@ -1,9 +1,12 @@
 ﻿body {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-image: url("../images/.jpeg");
+   
 }
 
+.bodybackground {
+    background-image: url("../images/bookwallpaper.jpg");
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -15,6 +18,7 @@
 .carousel-caption p {
     font-size: 20px;
     line-height: 1.4;
+    background-image: url("../images/bookwallpaper.jpg");
 }
 */
 /* Make .svg files in the carousel display properly in older browsers
@@ -57,4 +61,15 @@
     /* margin-top: 50px; */
     background-color: floralwhite;
     
+}
+
+#bookGrid {
+    background-color: white;
+    margin-top:20px;
+}
+
+.img-responsive {
+    width: 800px;
+    text-align: center;
+    justify-content: center;
 }

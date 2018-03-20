@@ -5,29 +5,32 @@
         @{
             ViewData["Title"] = "ListTrackedBook";
         }
+<body class="bodybackground">
+    <h2>My BookShelf</h2>
+    <div id="bookGrid">
+        @foreach (var trackedBook in @Model.BookShelf)
+        {
 
-        <h2>My BookShelf</h2>
-<div id="bookGrid">
-    @foreach (var trackedBook in @Model.BookShelf)
-    {
-       
             <div class="col-md-3 bookGrid__book">
-                 <div class="row">
-                <img class="fakeLink"
-                     src="@Html.DisplayFor(modelItem => trackedBook.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" />
-                <h4><strong>@trackedBook.BookTitle</strong></h4>
-                <p><strong>@trackedBook.Author</strong></p>
-            </div>
-              
+                <div class="row">
+                    <img class="fakeLink"
+                         src="@Html.DisplayFor(modelItem => trackedBook.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" />
+                    <h4><strong>@trackedBook.BookTitle</strong></h4>
+                    <p><strong>@trackedBook.Author</strong></p>
+                </div>
+
                 <div>
                     <a asp-action="Delete" asp-route-id="@trackedBook.BookId">Delete</a>
                 </div>
-        </div>
+            </div>
 
-       
-    }
 
-</div>
+        }
+
+    </div>
+</body>
+
+
 
 
 

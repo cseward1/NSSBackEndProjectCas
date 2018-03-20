@@ -25,14 +25,33 @@ namespace NSSBackEndProject.Controllers
             return View(await _context.Friendship.ToListAsync());
         }
 
-        //create new method to display the MyFriends View:
+        //create a method to display specific friends when you search for their first name, last name, or both. search by name only:
         [HttpPost]
         public async Task<IActionResult> FriendsList(string SearchFriends)
         //u equals user
-    
         {
             return View(await _context.ApplicationUser.Where(u => (u.FirstName + " " + u.LastName).Contains(SearchFriends)).ToListAsync());
         }
+
+        //new method to send a Friend Request:
+        public void SendFriendRequest( int FriendshipId, bool FriendshipStatus, ApplicationUser UserSender, ApplicationUser UserReciever)
+        {
+            //create a new instance of Friendship:
+            Friendship friendship = new Friendship();
+            //(insert all the friendship variables and what you want them to be)
+
+            //details You want included into the friendship:
+            friendship.FriendshipId = FriendshipId;
+            friendship.FriendshipStatus = false;
+            friendship.UserSender = UserSender;
+            friendship.UserReciever = UserReciever;
+
+           
+            //add the friendship to the database:
+            _context.Add(friendship);
+            _context.SaveChanges();
+        }
+        //end the new method
 
         // GET: Index
         public async Task<IActionResult> Index()
