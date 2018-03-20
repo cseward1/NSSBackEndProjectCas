@@ -19,7 +19,7 @@ namespace NSSBackEndProject.Controllers
 
         public BooksController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-     
+
             _context = context;
             _userManager = userManager;
         }
@@ -54,7 +54,7 @@ namespace NSSBackEndProject.Controllers
                 BookTitle = title,
                 BookImage = bookImage,
                 Author = bookAuthor,
-                
+
                 Description = bookDescription,
             };
             _context.Add(book);
@@ -66,7 +66,7 @@ namespace NSSBackEndProject.Controllers
 
                 User = user,
                 BookId = book.BookId,
-               
+
 
             };
 
@@ -89,8 +89,8 @@ namespace NSSBackEndProject.Controllers
                         BookTitle = m.BookTitle,
                         BookImage = m.BookImage,
                         Author = m.Author
-                     
-                       // Favorited = mu.Favorited,
+
+                        // Favorited = mu.Favorited,
                         //Watched = mu.Watched
                     }).ToList();
         }
@@ -230,7 +230,7 @@ namespace NSSBackEndProject.Controllers
             }
             ApplicationUser user = await GetCurrentUserAsync();
             var book = await _context.BookUser
-                .SingleAsync(m => m.BookId == id && m.User == user );
+                .SingleAsync(m => m.BookId == id && m.User == user);
             if (book == null)
             {
                 return NotFound("book wasnt found");
@@ -249,7 +249,7 @@ namespace NSSBackEndProject.Controllers
         //    _context.Book.Remove(book);
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(ListTrackedBook));
-            
+
         //}
 
         //new method for deleting a book from a specific users bookshelf:
@@ -276,7 +276,7 @@ namespace NSSBackEndProject.Controllers
         }
 
 
-    
+
         private bool BookExists(int id)
         {
             return _context.Book.Any(e => e.BookId == id);

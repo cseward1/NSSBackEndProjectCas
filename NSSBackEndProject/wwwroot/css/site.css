@@ -53,23 +53,33 @@
     font-size: 25px;
     width: 365px;
     /* position: absolute; */
-    height: 30px;
+    height: 15px;
     /* width: 400px; */
     margin: -15px 2px 1px -20px;
     top: 31%;
     left: 13.5%;
     /* margin-top: 50px; */
-    background-color: floralwhite;
-    
+    background-color: floralwhite;  
 }
 
-#bookGrid {
-    background-color: white;
-    margin-top:20px;
+
+
+
+#bookSearch__button {
+    border: 1px outset blue;
+    height: 40px;
+    cursor: pointer;
 }
 
-.img-responsive {
+
+
+.banner {
     width: 800px;
     text-align: center;
     justify-content: center;
+    margin-top: 50px;
+    margin-bottom:20px;
+    margin-left: 150px;
 }
+
+

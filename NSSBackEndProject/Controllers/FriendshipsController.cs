@@ -7,17 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NSSBackEndProject.Data;
 using NSSBackEndProject.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace NSSBackEndProject.Controllers
 {
+   
     public class FriendshipsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public FriendshipsController(ApplicationDbContext context)
+        public FriendshipsController(ApplicationDbContext context, UserManager<ApplicationUser>
+        userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser>
+           GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         //create new method to display the MyFriends View:
         [HttpGet]
         public async Task<IActionResult> MyFriends()
@@ -34,22 +42,31 @@ namespace NSSBackEndProject.Controllers
         }
 
         //new method to send a Friend Request:
-        public void SendFriendRequest( int FriendshipId, bool FriendshipStatus, ApplicationUser UserSender, ApplicationUser UserReciever)
+        [HttpGet]
+        public async Task<IActionResult> SendFriendRequest(string UserRecieverId)
         {
+            
             //create a new instance of Friendship:
             Friendship friendship = new Friendship();
-            //(insert all the friendship variables and what you want them to be)
+
+            //tried calling in the Application User but I dont think that will work:
+            ApplicationUser UserSender = await GetCurrentUserAsync();
+
+            //create a new instance of ApplicationUser:
+            //ApplicationUser applicationUser = new ApplicationUser();
+
 
             //details You want included into the friendship:
-            friendship.FriendshipId = FriendshipId;
-            friendship.FriendshipStatus = false;
+            ApplicationUser ur = _context.ApplicationUser.Single(a => a.Id == UserRecieverId);
+           
             friendship.UserSender = UserSender;
-            friendship.UserReciever = UserReciever;
+            friendship.UserReciever = ur;
 
            
             //add the friendship to the database:
             _context.Add(friendship);
             _context.SaveChanges();
+            return Ok("message");
         }
         //end the new method
 
