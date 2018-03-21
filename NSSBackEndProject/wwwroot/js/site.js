@@ -32,9 +32,12 @@ $("#bookSearch__button").click(evt => {
             //console.log(m.id)
             titles += `
                 <div class="col-md-3 bookGrid__book" id="book--${m.id}">
-                <img class="fakeLink" src=${m.volumeInfo.imageLinks ? m.volumeInfo.imageLinks.thumbnail : ""} />    
+                <img class="fakeLink" src=${m.volumeInfo.imageLinks ? m.volumeInfo.imageLinks.thumbnail : ""} alt="alternative text" title="${m.volumeInfo.description}"/>
+
                 <h4 class="fakeLink"><strong>${m.volumeInfo.title}</strong></h4>
                 <div class="fakeLink">${m.volumeInfo.authors}</div>
+                
+
                 <button <a asp-area="" asp-controller="Books" asp-action="Index" class = "AnotherFavoriteBookAdded">Add to Bookshelf</button>
                 </div>
             `;

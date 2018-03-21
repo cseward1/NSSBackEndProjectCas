@@ -55,6 +55,30 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
+    @* //new method to send a Friend Request:
+    public void SendFriendRequest(Friendship friendship, int FriendId)
+    {
+    //create a new instance of Friendship:
+    //Friendship friendship = new Friendship();
+    ApplicationUser _user = await GetCurrentUserAsync();
+    var _friend = await _context.ApplicationUser.SingleOrDefaultAsync(u => u.Id == FriendId);
+    //create a new instance
+    //(insert all the friendship variables and what you want them to be)
+
+    //details You want included into the friendship:
+
+
+    friendship.UserSender = _user;
+    friendship.UserReciever = UserReciever;
+
+
+    //add the friendship to the database:
+    _context.Add(friendship);
+    _context.SaveChanges();
+    }
+    //end the new method
+
+    *@
 </div>
 
 @section Scripts {

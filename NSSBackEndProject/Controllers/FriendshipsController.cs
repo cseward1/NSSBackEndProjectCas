@@ -7,22 +7,69 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NSSBackEndProject.Data;
 using NSSBackEndProject.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace NSSBackEndProject.Controllers
 {
+   
     public class FriendshipsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public FriendshipsController(ApplicationDbContext context)
+        public FriendshipsController(ApplicationDbContext context, UserManager<ApplicationUser>
+        userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser>
+           GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         //create new method to display the MyFriends View:
+        [HttpGet]
         public async Task<IActionResult> MyFriends()
         {
             return View(await _context.Friendship.ToListAsync());
         }
+
+        //create a method to display specific friends when you search for their first name, last name, or both. search by name only:
+        [HttpPost]
+        public async Task<IActionResult> FriendsList(string SearchFriends)
+        //u equals user
+        {
+            return View(await _context.ApplicationUser.Where(u => (u.FirstName + " " + u.LastName).Contains(SearchFriends)).ToListAsync());
+        }
+
+        //new method to send a Friend Request:
+        [HttpGet]
+        public async Task<IActionResult> SendFriendRequest(string UserRecieverId)
+        {
+            
+            //create a new instance of Friendship:
+            Friendship friendship = new Friendship();
+
+            //tried calling in the Application User but I dont think that will work:
+            ApplicationUser UserSender = await GetCurrentUserAsync();
+
+            //create a new instance of ApplicationUser:
+            //ApplicationUser applicationUser = new ApplicationUser();
+
+
+            //details You want included into the friendship:
+            ApplicationUser ur = _context.ApplicationUser.Single(a => a.Id == UserRecieverId);
+           
+            friendship.UserSender = UserSender;
+            friendship.UserReciever = ur;
+
+           
+            //add the friendship to the database:
+            _context.Add(friendship);
+            _context.SaveChanges();
+            //bring the user back to their MyFriendsPage:
+            return View("MyFriends");
+        }
+        //end the new method
 
         // GET: Index
         public async Task<IActionResult> Index()

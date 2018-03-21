@@ -1,0 +1,17 @@
+﻿@model List<ApplicationUser>
+
+
+@foreach (var friend in Model)
+{
+    <p>
+        @friend.FirstName
+        @friend.LastName
+       @* @Html.ActionLink("Friend Request?", "SendFriendRequest", new { UserRecieverId = friend.Id }, null)*@
+         <a   asp-action="SendFriendRequest" asp-route-UserRecieverId="@friend.Id" id="SendFriendRequest">Friend Request?</a>
+    </p>
+
+
+}
+
+
+
