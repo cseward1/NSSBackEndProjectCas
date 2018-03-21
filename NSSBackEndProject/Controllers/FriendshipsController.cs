@@ -66,7 +66,8 @@ namespace NSSBackEndProject.Controllers
             //add the friendship to the database:
             _context.Add(friendship);
             _context.SaveChanges();
-            return Ok("message");
+            //bring the user back to their MyFriendsPage:
+            return View("MyFriends");
         }
         //end the new method
 

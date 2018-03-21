@@ -39,47 +39,44 @@
     }
 }
      */
+
+/*Styling for the Search Bar*/
 #bookSearch {
     list-style-type: none;
     text-decoration: none;
-    /* font: 60px; */
-    /* border: inset; */
-    /* border-radius: 120px; */
-    padding-top: 21px;
-    padding-bottom: 21px;
-    /* padding-left: 25px; */
-    /* padding-right: 25px; */
-    font-family: 'Barlow', sans-serif;
-    font-size: 25px;
-    width: 365px;
-    /* position: absolute; */
-    height: 15px;
-    /* width: 400px; */
-    margin: -15px 2px 1px -20px;
-    top: 31%;
-    left: 13.5%;
-    /* margin-top: 50px; */
-    background-color: floralwhite;  
+    margin-left: 250px;
+    width: 420px;
+    height: 40px;
+    font: 30px;
+    color: darkgreen;
 }
-
-
-
 
 #bookSearch__button {
-    border: 1px outset blue;
-    height: 40px;
-    cursor: pointer;
+    height:40px;
 }
 
-
-
+.BookSearchWithButton{
+    border:;
+}
+/*Search Bar Styling Ends*/
+#bookGrid {
+    background-color: rgba(211, 207, 204, 0.952);
+    padding-left: 100px;
+    
+}
 .banner {
     width: 800px;
     text-align: center;
     justify-content: center;
     margin-top: 50px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     margin-left: 150px;
+}
+
+.col-md-3.bookGrid__book{
+
+    text-align: center;
+    justify-content:center;
 }
 
 
