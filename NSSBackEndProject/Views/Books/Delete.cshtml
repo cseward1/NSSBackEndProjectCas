@@ -3,45 +3,48 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<body class="deletebodybackground">
+    <h2 id="deletepage">.</h2>
+    <div id="borderForDeletePage">
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        @* <h4>Book</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Book.BookTitle)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Book.BookTitle)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Book.BookImage)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Book.BookImage)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Book.Author)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Book.Author)
+                </dd>
 
-<h2>Delete</h2>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Book.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Book.Description)
+                </dd>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Book</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.BookTitle)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.BookTitle)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.BookImage)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.BookImage)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.Author)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.Author)
-        </dd>
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.Description)
-        </dd>
-      
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="BookId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="ListTracked">Back to List</a>
-    </form>
-</div>
+            </dl>
+        *@
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="BookId" />
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="ListTracked">Back to List</a>
+        </form>
+    </div>
+        </div>
+    </body>

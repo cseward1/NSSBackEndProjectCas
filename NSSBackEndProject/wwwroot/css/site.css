@@ -56,9 +56,7 @@
     height:40px;
 }
 
-.BookSearchWithButton{
-    border:;
-}
+
 
 #bookGrid {
     background-color: rgba(211, 207, 204, 0.952);
@@ -83,4 +81,33 @@
     
 }
 
+#h2BookShelfTitle {
+    text-align: center;
+    font-size: 60px;
+    padding-top: 60px;
+    padding-bottom: 40px;
 
+}
+
+#bookshelfcss {
+    background-color: rgba(211, 207, 204, 0.952);
+    border-radius: 25px;
+}
+
+
+/*DELETE PAGE:*/
+.deletebodybackground {
+    background-image: url("../images/p.jpg");
+}
+
+#borderForDeletePage {
+    border-radius: 25px;
+    background-color: white;
+    border: solid;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    justify-content: center;
+}
+
+/*DELTE PAGE ENDS*/
