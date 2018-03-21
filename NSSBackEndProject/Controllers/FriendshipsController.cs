@@ -30,9 +30,12 @@ namespace NSSBackEndProject.Controllers
         [HttpGet]
         public async Task<IActionResult> MyFriends()
         {
-            return View(await _context.Friendship.ToListAsync());
+            // return View(await _context.Friendship.ToListAsync());
+            var UserReciever = await GetCurrentUserAsync();
+            //f is reffering to the Friendship:
+            return View(await _context.Friendship.Where(f => (f.UserReciever == UserReciever) && !(f.FriendshipStatus)).ToListAsync());
         }
-
+        
         //create a method to display specific friends when you search for their first name, last name, or both. search by name only:
         [HttpPost]
         public async Task<IActionResult> FriendsList(string SearchFriends)

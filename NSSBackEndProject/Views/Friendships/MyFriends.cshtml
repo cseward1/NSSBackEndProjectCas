@@ -8,19 +8,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>MyFriends</title>
 </head>
-<body>
+<body id="MyFriendsBackround">
     @*You will see a list of your friends ?*@
     <div><strong>Current Friends</strong></div>
     @*Need a list of friends that displays the picture and Name - clicking on their name bring you to their bookshelf*@
 
-    <h4><strong> Find New LitWits</strong></h4>
-    <form asp-action="FriendsList">
-        <input type="text" name="SearchFriends" placeholder="Search for Friends" id="userSearch" />
-        <button id="userSearch__button"> Search</button>
-    </form>
-    <div>
-        <h4><strong> Pending Requests:</strong></h4>
-        
+    <div id="borderForMyFriendshipPage">
+        <h4><strong> Find New LitWits</strong></h4>
+        <form asp-action="FriendsList">
+            <input type="text" name="SearchFriends" placeholder="Search for Friends" id="userSearch" />
+            <button id="userSearch__button"> Search</button>
+        </form>
+        <div>
+            <h4><strong> Pending Requests:</strong></h4>
+           @foreach (var pendingRequests in @Model)
+           { 
+               <div> @pendingRequests.UserSender</div>
+               <div>@pendingRequests.FriendshipStatus</div>
+               <button>Accept Friend Request?</button>
+
+
+           }
+
+        </div>
     </div>
     @*need a search bar that grabs that application users. when they search i want them to see the users picture, name, and the requested or add friend status *@
 

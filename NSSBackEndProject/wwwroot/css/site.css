@@ -56,7 +56,10 @@
     height:40px;
 }
 
-
+#ListTracked {
+    background-color: rgba(211, 207, 204, 0.952);
+    border-radius: 25px;
+}
 
 #bookGrid {
     background-color: rgba(211, 207, 204, 0.952);
@@ -75,11 +78,13 @@
     text-align: center;
     justify-content: center;
     padding-top: 28px;
-    padding-left:10px;
-    padding-right:10px;
-    border-color:black;
-    
+    padding-left: 10px;
+    padding-right: 10px;
+    border-color: black;
+  
 }
+
+
 
 #h2BookShelfTitle {
     text-align: center;
@@ -114,3 +119,21 @@
 
 
 /*DELTE PAGE ENDS*/
+
+
+/*MY Friendships table:*/
+#MyFriendsBackround {
+    background-image: url("../images/p.jpg");
+}
+
+#borderForMyFriendshipPage {
+    border-radius: 25px;
+    background-color: white;
+    border: solid;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 300px;
+    margin-top: 240px;
+}
