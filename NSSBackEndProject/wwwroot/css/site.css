@@ -47,8 +47,9 @@
     margin-left: 250px;
     width: 420px;
     height: 40px;
-    font: 30px;
-    color: darkgreen;
+    font: 180px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 #bookSearch__button {
@@ -58,11 +59,10 @@
 .BookSearchWithButton{
     border:;
 }
-/*Search Bar Styling Ends*/
+
 #bookGrid {
     background-color: rgba(211, 207, 204, 0.952);
-    padding-left: 100px;
-    
+    border-radius: 25px;
 }
 .banner {
     width: 800px;
@@ -73,10 +73,14 @@
     margin-left: 150px;
 }
 
-.col-md-3.bookGrid__book{
-
+.col-md-3.bookGrid__book {
     text-align: center;
-    justify-content:center;
+    justify-content: center;
+    padding-top: 28px;
+    padding-left:10px;
+    padding-right:10px;
+    border-color:black;
+    
 }
 
 
