@@ -88,7 +88,8 @@ namespace NSSBackEndProject.Controllers
                         BookId = m.BookId,
                         BookTitle = m.BookTitle,
                         BookImage = m.BookImage,
-                        Author = m.Author
+                        Author = m.Author,
+                        Description = m.Description
 
                         // Favorited = mu.Favorited,
                         //Watched = mu.Watched

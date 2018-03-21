@@ -15,7 +15,8 @@
             <div class="col-md-3 bookGrid__book">
                 <div class="row">
                     <img class="fakeLink"
-                         src="@Html.DisplayFor(modelItem => trackedBook.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" />
+                         src="@Html.DisplayFor(modelItem => trackedBook.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="alternative text" title="@trackedBook.Description"/>
+                    
                     <h4><strong>@trackedBook.BookTitle</strong></h4>
                     <p><strong>@trackedBook.Author</strong></p>
                 </div>
