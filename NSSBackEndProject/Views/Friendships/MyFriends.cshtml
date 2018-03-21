@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<NSSBackEndProject.Models.Friendship>
 
+
 @{
     ViewData["Title"] = "MyFriends";
 }
@@ -23,7 +24,7 @@
             <h4><strong> Pending Requests:</strong></h4>
            @foreach (var pendingRequests in @Model)
            { 
-               <div> @pendingRequests.UserSender</div>
+               <div> @pendingRequests.UserSender.FirstName</div>
                <div>@pendingRequests.FriendshipStatus</div>
                <button>Accept Friend Request?</button>
 
