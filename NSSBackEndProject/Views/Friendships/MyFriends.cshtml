@@ -9,19 +9,19 @@
 
 @{ var userName = @User.Identity.Name; }
 
-<div id="MyFriendsBackround">
-    <div id="borderForMyFriendshipPage">
-        @*You will see a list of your friends ?*@
-       
-        @*Need a list of friends that displays the picture and Name - clicking on their name bring you to their bookshelf*@
-        @*Friends List:*@
-        <div>
-            <h4><strong>My Friends:</strong></h4>
 
-            @foreach (var friend in Model)
+<div id="borderForMyFriendshipPage">
+    @*You will see a list of your friends ?*@
+
+    @*Need a list of friends that displays the picture and Name - clicking on their name bring you to their bookshelf*@
+    @*Friends List:*@
+    <div>
+        <h4><strong>My Friends:</strong></h4>
+
+        @foreach (var friend in Model)
             {
 
-                @if (@friend.FriendshipStatus == true)
+            @if (@friend.FriendshipStatus == true)
                 {
                 <div>
                     @if (friend.UserSender.Email != userName)
@@ -34,45 +34,70 @@
                         <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserReciever.Id">@friend.UserReciever.FirstName @friend.UserReciever.LastName </a>
 
                     }
-                    
+
                 </div>}
 
+        }
 
-
-
-
-            }
-
-        </div>
-
-        <div>
-            <h4><strong> Find New LitWits:</strong></h4>
-            <form asp-action="FriendsList">
-                <input type="text" name="SearchFriends" placeholder="Search for Friends" id="userSearch" />
-                <button id="userSearch__button"> Search</button>
-            </form>
-        </div>
-
-
-        <div>
-            <h4><strong> Pending Requests:</strong></h4>
-            @foreach (var pendingRequests in Model)
-            {
-                <div>
-                    
-                    @pendingRequests.UserSender.FirstName
-                    @pendingRequests.UserSender.LastName
-                </div>
-                @*<div>@pendingRequests.FriendshipStatus</div>*@
-                <a asp-action="ConfirmFriendRequest" asp-route-Friendship="@pendingRequests.FriendshipId">Accept Friend Request?</a>
-
-
-            }
-
-        </div>
     </div>
-    @*need a search bar that grabs that application users. when they search i want them to see the users picture, name, and the requested or add friend status *@
 
-</div>
+    <div>
+        <h4><strong> Find New LitWits:</strong></h4>
+        <form asp-action="FriendsList">
+            <input type="text" name="SearchFriends" placeholder="Search for Friends" id="userSearch" />
+            <button id="userSearch__button"> Search</button>
+        </form>
+    </div>
+
+
+
+    @*REAl Code:*@
+        <h4><strong> Pending Requests:</strong></h4>
+        @foreach (var pendingRequests in Model)
+        {
+            @if (pendingRequests.FriendshipStatus == false)
+                {
+                <div>
+                    @if (pendingRequests.UserSender.Email == userName)
+                    {
+
+                        <div>
+
+                            @pendingRequests.UserReciever.FirstName
+                            @pendingRequests.UserReciever.LastName
+                        </div>
+                            <div> Pending Request</div>
+
+                    }
+
+                    @if (pendingRequests.UserSender.Email != userName)
+                    {
+                        <div>
+
+                            @pendingRequests.UserSender.FirstName
+                            @pendingRequests.UserSender.LastName
+                        </div>
+                            @*<div>@pendingRequests.FriendshipStatus</div>*@
+                            <a asp-action="ConfirmFriendRequest" asp-route-Friendship="@pendingRequests.FriendshipId">Accept Friend Request?</a>
+                    }
+                    </div>
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    @*need a search bar that grabs that application users. when they search i want them to see the users picture, name, and the requested or add friend status *@
+
+
 
 
