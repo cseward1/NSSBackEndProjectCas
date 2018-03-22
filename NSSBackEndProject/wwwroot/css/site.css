@@ -44,34 +44,31 @@
 #bookSearch {
     list-style-type: none;
     text-decoration: none;
-    margin-left: 250px;
+    margin-left: 290px;
     width: 420px;
     height: 40px;
-    font: 180px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #bookSearch__button {
     height:40px;
 }
 
-#ListTracked {
-    background-color: rgba(211, 207, 204, 0.952);
-    border-radius: 25px;
-}
+
 
 #bookGrid {
-    background-color: rgba(211, 207, 204, 0.952);
+    background-color: rgba(211, 207, 204, 0.822);
     border-radius: 25px;
+    overflow:hidden;
 }
 .banner {
     width: 800px;
     text-align: center;
     justify-content: center;
     margin-top: 50px;
-    margin-bottom: 20px;
-    margin-left: 150px;
+    margin-bottom: 30px;
+    margin-left: 180px;
 }
 
 .col-md-3.bookGrid__book {
@@ -95,7 +92,7 @@
 }
 
 #bookshelfcss {
-    background-color: rgba(211, 207, 204, 0.952);
+    background-color: rgba(211, 207, 204, 0.822);
     border-radius: 25px;
 }
 
@@ -136,4 +133,15 @@
     justify-content: center;
     margin-left: 300px;
     margin-top: 240px;
+}
+
+#deleteTrackedBook{
+    list-style-type:none;
+    border-radius:25px;
+    text-decoration:none;
+    
+    
+}
+#deleteTrackedBook:hover {
+    background-color: lightblue;
 }

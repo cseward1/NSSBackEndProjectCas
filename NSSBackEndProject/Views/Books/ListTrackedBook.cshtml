@@ -7,9 +7,12 @@
     ViewData["Title"] = "ListTrackedBook";
 }
 <body class="bodybackground">
-    <h2 id="h2BookShelfTitle">My BookShelf</h2>
+    <div>
+    <img src="~/images/Litwits7.png" alt="ASP.NET" class="banner" align="middle" />
+
+    </div>
     <div id="bookGrid">
-        <div id="ListTracked">
+       
         @foreach (var trackedBook in @Model.BookShelf)
         {
 
@@ -24,15 +27,19 @@
                     </div>
                 </div>
                 <div>
-                    <a asp-action="Delete" asp-route-id="@trackedBook.BookId">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@trackedBook.BookId" id="deleteTrackedBook">Delete</a>
                 </div>
             </div>
 
 
+          
+
+
         }
+
         
     </div>
-        </div>
+        
   
 </body>
 
