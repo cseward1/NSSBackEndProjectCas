@@ -13,7 +13,7 @@ namespace NSSBackEndProject.Models
 
         [Required]
         public string BookTitle { get; set; }
-        public Book Book { get; set; }
+        
 
         [Required]
         public ApplicationUser User { get; set; }

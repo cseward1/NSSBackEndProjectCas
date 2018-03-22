@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180321041437_FixFanFiction.cs" />
+    <Compile Remove="Migrations\20180321041437_FixFanFiction.Designer.cs" />
     <Compile Remove="Views\Books\FavoriteBook.cshtml.cs" />
     <Compile Remove="Views\Books\ListTracked.cshtml.cs" />
   </ItemGroup>

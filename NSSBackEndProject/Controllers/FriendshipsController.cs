@@ -26,13 +26,19 @@ namespace NSSBackEndProject.Controllers
 
         private Task<ApplicationUser>
            GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-        //create new method to display the MyFriends View:
+
+
+        //create new method to display the MyFriends View and allows you to search for all users:
+        //See FriendRequests that are pending:
         [HttpGet]
         public async Task<IActionResult> MyFriends()
         {
-            return View(await _context.Friendship.ToListAsync());
+            // return View(await _context.Friendship.ToListAsync());
+            var UserReciever = await GetCurrentUserAsync();
+            //f is reffering to the Friendship:
+            return View(await _context.Friendship.Include("UserSender").Where(f => (f.UserReciever == UserReciever) && !(f.FriendshipStatus)).ToListAsync());
         }
-
+        
         //create a method to display specific friends when you search for their first name, last name, or both. search by name only:
         [HttpPost]
         public async Task<IActionResult> FriendsList(string SearchFriends)
@@ -41,7 +47,7 @@ namespace NSSBackEndProject.Controllers
             return View(await _context.ApplicationUser.Where(u => (u.FirstName + " " + u.LastName).Contains(SearchFriends)).ToListAsync());
         }
 
-        //new method to send a Friend Request:
+        //Send a Friend Request:
         [HttpGet]
         public async Task<IActionResult> SendFriendRequest(string UserRecieverId)
         {
@@ -51,11 +57,7 @@ namespace NSSBackEndProject.Controllers
 
             //tried calling in the Application User but I dont think that will work:
             ApplicationUser UserSender = await GetCurrentUserAsync();
-
-            //create a new instance of ApplicationUser:
-            //ApplicationUser applicationUser = new ApplicationUser();
-
-
+            
             //details You want included into the friendship:
             ApplicationUser ur = _context.ApplicationUser.Single(a => a.Id == UserRecieverId);
            
@@ -69,7 +71,27 @@ namespace NSSBackEndProject.Controllers
             //bring the user back to their MyFriendsPage:
             return View("MyFriends");
         }
-        //end the new method
+        //end the new method:"
+
+
+
+        //PENDING FRIEND REQUEST: CHNAGE THE STATE OF THE FRIENDSHIP:
+        [HttpGet]
+        public IActionResult ConfirmFriendRequest( int Friendship)
+        {
+            var ConfirmFriendship = _context.Friendship.SingleOrDefault(i => i.FriendshipId == Friendship);
+            ConfirmFriendship.FriendshipStatus = true;
+
+            //add the New Friendship to the database:
+            _context.Update(ConfirmFriendship);
+            _context.SaveChanges();
+            return RedirectToAction("MyFriends");
+            //bring the user back to their MyFriendsPage:
+
+        }
+
+
+        //END the method:
 
         // GET: Index
         public async Task<IActionResult> Index()
