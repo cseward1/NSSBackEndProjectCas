@@ -1,0 +1,36 @@
+﻿@model List<Book>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FriendsBookShelf</title>
+    
+</head>
+<body>
+    <div id="bookGrid">
+
+        @foreach (var book in @Model)
+        {
+
+            <div class="col-md-3 bookGrid__book">
+                <div class="row">
+                    <div id="ListTracked">
+                        <img class="fakeLink"
+                             src="@Html.DisplayFor(modelItem => book.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="alternative text" title="@book.Description" />
+
+                        <h4><strong>@book.BookTitle</strong></h4>
+                        <p><strong>@book.Author</strong></p>
+                    </div>
+                </div>
+              
+            </div>
+            
+            }
+    </div>
+</body>
+</html>

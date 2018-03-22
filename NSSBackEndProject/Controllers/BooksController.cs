@@ -96,6 +96,30 @@ namespace NSSBackEndProject.Controllers
                     }).ToList();
         }
 
+        //new action to display user's friends bookshelves:
+        [HttpGet]
+        public async Task<IActionResult> FriendsBookShelf(string id)
+
+        {
+            var u = await _userManager.FindByIdAsync(id);
+            var model = (from m in _context.Book
+                         join mu in _context.BookUser
+                           on m.BookId equals mu.BookId
+                         where mu.User == u
+                         select new Book
+                         {
+                             BookId = m.BookId,
+                             BookTitle = m.BookTitle,
+                             BookImage = m.BookImage,
+                             Author = m.Author,
+                             Description = m.Description
+
+                             // Favorited = mu.Favorited,
+                             //Watched = mu.Watched
+                         }).ToList();
+            return View(model);
+
+        }
         public bool IsBookShelf(string bookId, ApplicationUser user)
         {
             var isTracked = _context.BookUser
