@@ -36,7 +36,7 @@ namespace NSSBackEndProject.Controllers
             // return View(await _context.Friendship.ToListAsync());
             var UserReciever = await GetCurrentUserAsync();
             //f is reffering to the Friendship:
-            var models = await _context.Friendship.Include("UserSender").Where(f => (f.UserReciever == UserReciever || f.UserSender ==UserReciever)).ToListAsync();
+            var models = await _context.Friendship.Include("UserSender").Include("UserReciever").Where(f => (f.UserReciever == UserReciever || f.UserSender == UserReciever)).ToListAsync();
 
             //return View(await _context.Friendship.Include("UserSender").Where(f => (f.UserReciever == UserReciever) && !(f.FriendshipStatus)).ToListAsync());
             return View(models);
