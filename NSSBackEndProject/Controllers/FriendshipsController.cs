@@ -36,7 +36,10 @@ namespace NSSBackEndProject.Controllers
             // return View(await _context.Friendship.ToListAsync());
             var UserReciever = await GetCurrentUserAsync();
             //f is reffering to the Friendship:
-            return View(await _context.Friendship.Include("UserSender").Where(f => (f.UserReciever == UserReciever) && !(f.FriendshipStatus)).ToListAsync());
+            var models = await _context.Friendship.Include("UserSender").Where(f => (f.UserReciever == UserReciever || f.UserSender ==UserReciever)).ToListAsync();
+
+            //return View(await _context.Friendship.Include("UserSender").Where(f => (f.UserReciever == UserReciever) && !(f.FriendshipStatus)).ToListAsync());
+            return View(models);
         }
         
         //create a method to display specific friends when you search for their first name, last name, or both. search by name only:
@@ -59,7 +62,7 @@ namespace NSSBackEndProject.Controllers
             ApplicationUser UserSender = await GetCurrentUserAsync();
             
             //details You want included into the friendship:
-            ApplicationUser ur = _context.ApplicationUser.Single(a => a.Id == UserRecieverId);
+            ApplicationUser ur =  _context.ApplicationUser.Single(a => a.Id == UserRecieverId);
            
             friendship.UserSender = UserSender;
             friendship.UserReciever = ur;
@@ -69,7 +72,7 @@ namespace NSSBackEndProject.Controllers
             _context.Add(friendship);
             _context.SaveChanges();
             //bring the user back to their MyFriendsPage:
-            return View("MyFriends");
+            return RedirectToAction("MyFriends");
         }
         //end the new method:"
 
