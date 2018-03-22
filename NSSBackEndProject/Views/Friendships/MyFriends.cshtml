@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<NSSBackEndProject.Models.Friendship>
 
 
+
 @{
     ViewData["Title"] = "MyFriends";
 }
 
-<head>
-    <meta name="viewport" content="width=device-width" />
 
-    <title>MyFriends</title>
-</head>
-<body id="MyFriendsBackround">
+@{ var userName = @User.Identity.Name; }
+
+<div id="MyFriendsBackround">
     <div id="borderForMyFriendshipPage">
         @*You will see a list of your friends ?*@
        
@@ -21,11 +20,23 @@
 
             @foreach (var friend in Model)
             {
+
                 @if (@friend.FriendshipStatus == true)
                 {
                 <div>
-                    <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserSender.Id">@friend.UserSender.FirstName @friend.UserSender.LastName </a>
+                    @if (friend.UserSender.Email != userName)
+                    {
+                        <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserSender.Id">@friend.UserSender.FirstName @friend.UserSender.LastName </a>
+
+                    }
+                    @if (friend.UserReciever.Email != userName)
+                    {
+                        <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserReciever.Id">@friend.UserReciever.FirstName @friend.UserReciever.LastName </a>
+
+                    }
+                    
                 </div>}
+
 
 
 
@@ -48,6 +59,7 @@
             @foreach (var pendingRequests in Model)
             {
                 <div>
+                    
                     @pendingRequests.UserSender.FirstName
                     @pendingRequests.UserSender.LastName
                 </div>
@@ -61,6 +73,6 @@
     </div>
     @*need a search bar that grabs that application users. when they search i want them to see the users picture, name, and the requested or add friend status *@
 
-</body>
+</div>
 
 
