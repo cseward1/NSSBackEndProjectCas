@@ -9,50 +9,59 @@
 
 @{ var userName = @User.Identity.Name; }
 
+<body id="FriendsBackground">
+   <div>
+    <img src="~/images/LibraryBook2.png" alt="ASP.NET" class="banner" align="middle" />
 
-<div id="borderForMyFriendshipPage">
-    @*You will see a list of your friends ?*@
+    </div>
+    <div id="borderForMyFriendshipPage1">
+        @*You will see a list of your friends ?*@
 
-    @*Need a list of friends that displays the picture and Name - clicking on their name bring you to their bookshelf*@
-    @*Friends List:*@
-    <div>
-        <h4><strong>My Friends:</strong></h4>
+        @*Need a list of friends that displays the picture and Name - clicking on their name bring you to their bookshelf*@
+        @*Friends List:*@
+        <div>
+            <h2 class="textFont">My Friends</h2>
 
-        @foreach (var friend in Model)
+            @foreach (var friend in Model)
             {
 
-            @if (@friend.FriendshipStatus == true)
+                @if (@friend.FriendshipStatus == true)
                 {
-                <div>
-                    @if (friend.UserSender.Email != userName)
+                    <div>
+                        @if (friend.UserSender.Email != userName)
                     {
-                        <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserSender.Id">@friend.UserSender.FirstName @friend.UserSender.LastName </a>
+                            <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserSender.Id">@friend.UserSender.FirstName @friend.UserSender.LastName </a>
 
-                    }
-                    @if (friend.UserReciever.Email != userName)
+                        }
+                        @if (friend.UserReciever.Email != userName)
                     {
-                        <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserReciever.Id">@friend.UserReciever.FirstName @friend.UserReciever.LastName </a>
+                            <a asp-controller="Books" asp-action="FriendsBookShelf" asp-route-id="@friend.UserReciever.Id">@friend.UserReciever.FirstName @friend.UserReciever.LastName </a>
 
-                    }
+                        }
 
-                </div>}
+                    </div>}
 
-        }
+            }
 
+        </div>
     </div>
 
-    <div>
-        <h4><strong> Find New LitWits:</strong></h4>
-        <form asp-action="FriendsList">
-            <input type="text" name="SearchFriends" placeholder="Search for Friends" id="userSearch" />
-            <button id="userSearch__button"> Search</button>
-        </form>
-    </div>
+    @*Search for new friends*@
+    <div id="borderForMyFriendshipPage2">
+        <div>
+            <h2 class="textFont">Find New Friends</h2>
+            <form asp-action="FriendsList">
+                <input type="text" name="SearchFriends" placeholder="Search for Friends" id="userSearch" />
+                <button id="userSearch__button"> Search</button>
+            </form>
+        </div>
+       
 
 
 
-    @*REAl Code:*@
-        <h4><strong> Pending Requests:</strong></h4>
+        @*Pending Request:*@
+    
+        <h2 class="textFont"> Pending Requests</h2>
         @foreach (var pendingRequests in Model)
         {
             @if (pendingRequests.FriendshipStatus == false)
@@ -66,7 +75,7 @@
                             @pendingRequests.UserReciever.FirstName
                             @pendingRequests.UserReciever.LastName
                         </div>
-                            <div> Pending Request</div>
+                        <p id="pendingRequest"> Friendship Request Pending</p>
 
                     }
 
@@ -77,15 +86,15 @@
                             @pendingRequests.UserSender.FirstName
                             @pendingRequests.UserSender.LastName
                         </div>
-                            @*<div>@pendingRequests.FriendshipStatus</div>*@
-                            <a asp-action="ConfirmFriendRequest" asp-route-Friendship="@pendingRequests.FriendshipId">Accept Friend Request?</a>
+                        @*<div>@pendingRequests.FriendshipStatus</div>*@
+                        <a asp-action="ConfirmFriendRequest" asp-route-Friendship="@pendingRequests.FriendshipId">Accept Friend Request?</a>
                     }
-                    </div>
-                }
+                </div>
             }
+        }
+        </div>
 
-
-
+</body>
 
 
 

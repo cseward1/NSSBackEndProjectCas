@@ -119,11 +119,9 @@
 
 
 /*MY Friendships table:*/
-#MyFriendsBackround {
-    background-image: url("../images/p.jpg");
-}
 
-#borderForMyFriendshipPage {
+
+#borderForMyFriendshipPage1 {
     border-radius: 25px;
     background-color: white;
     border: solid;
@@ -131,8 +129,22 @@
     width: 500px;
     text-align: center;
     justify-content: center;
-    margin-left: 300px;
-    margin-top: 240px;
+    margin-left: 10px;
+    margin-top: 140px;
+    border-color: royalblue;
+    
+}
+#borderForMyFriendshipPage2 {
+    border-radius: 25px;
+    background-color: white;
+    border: solid;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 600px;
+    margin-top: -395px;
+    border-color: royalblue;
 }
 
 #deleteTrackedBook{
@@ -144,4 +156,18 @@
 }
 #deleteTrackedBook:hover {
     background-color: lightblue;
+}
+
+/*Friend Requests Pending:*/
+
+#pendingRequest{
+    color: darkred;
+}
+
+#FriendsBackground {
+    background-image: url("../images/p.jpg");
+  
+}
+.textFont {
+    font-family: "Times New Roman", Times, serif;
 }
