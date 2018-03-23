@@ -171,3 +171,26 @@
 .textFont {
     font-family: "Times New Roman", Times, serif;
 }
+
+#FindFriends {
+    background-image: url("../images/p.jpg");
+}
+
+#MyListOfFriends {
+    border-radius: 25px;
+    background-color: white;
+    border: solid;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 330px;
+    margin-top: 130px;
+    border-color: royalblue;
+    font-size: large;
+}
+
+/*Your Friends BookShelf Page:*/
+#FriendsReadingList2 {
+    background-image: url("../images/j.jpg");
+}
