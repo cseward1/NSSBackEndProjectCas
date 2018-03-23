@@ -1,18 +1,28 @@
 ﻿@model List<ApplicationUser>
-<h2>Searching for Friends...</h2>
 
-@foreach (var friend in Model)
-{
-   
-       
-   <div></div>
+<body id="FindFriends">
+    <div>
+        <img src="~/images/friends.png" alt="ASP.NET" class="banner" align="middle" />
+
+    </div>
     
-        @friend.FirstName @friend.LastName
-        <a asp-action="SendFriendRequest" asp-route-UserRecieverId="@friend.Id" id="SendFriendRequest">Friend Request?</a>
+    <div id="MyListOfFriends">
+        @foreach (var friend in Model)
+        {
+
+
+            <div></div>
+
+            @friend.FirstName @friend.LastName
+            <a asp-action="SendFriendRequest" asp-route-UserRecieverId="@friend.Id" id="SendFriendRequest">Friend Request?</a>
 
 
 
-}
+        }
+    </div>
+</body>
+
+
 
 
 

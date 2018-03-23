@@ -5,7 +5,8 @@
 }
 
 .bodybackground {
-    background-image: url("../images/bookwallpaper.jpg");
+    background-image: url("../images/Wallpaper.jpg");
+    /*background-size: cover;*/
 }
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -119,11 +120,9 @@
 
 
 /*MY Friendships table:*/
-#MyFriendsBackround {
-    background-image: url("../images/p.jpg");
-}
 
-#borderForMyFriendshipPage {
+
+#borderForMyFriendshipPage1 {
     border-radius: 25px;
     background-color: white;
     border: solid;
@@ -131,8 +130,25 @@
     width: 500px;
     text-align: center;
     justify-content: center;
-    margin-left: 300px;
-    margin-top: 240px;
+    margin-left: 10px;
+    margin-top: 40px;
+    border-color: royalblue;
+    position:absolute;
+    margin-bottom:60px;
+    
+}
+#borderForMyFriendshipPage2 {
+    border-radius: 25px;
+    background-color: white;
+    border: solid;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 600px;
+    margin-top: 40px;
+    border-color: royalblue;
+    position:absolute;
 }
 
 #deleteTrackedBook{
@@ -144,4 +160,46 @@
 }
 #deleteTrackedBook:hover {
     background-color: lightblue;
+}
+
+/*Friend Requests Pending:*/
+
+#pendingRequest{
+    color: darkred;
+}
+
+#FriendsBackground {
+    background-image: url("../images/p.jpg");
+  
+}
+.textFont {
+    font-family: "Times New Roman", Times, serif;
+}
+
+#FindFriends {
+    background-image: url("../images/p.jpg");
+}
+
+#MyListOfFriends {
+    border-radius: 25px;
+    background-color: white;
+    border: solid;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 330px;
+    margin-top: 130px;
+    border-color: royalblue;
+    font-size: large;
+}
+
+#BookShelfFriends{
+    margin-left: 300px;
+    margin-top: 200px;
+}
+
+
+#bookAuthor{
+    margin:0;
 }
