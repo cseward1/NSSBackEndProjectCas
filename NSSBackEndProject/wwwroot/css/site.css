@@ -130,8 +130,10 @@
     text-align: center;
     justify-content: center;
     margin-left: 10px;
-    margin-top: 140px;
+    margin-top: 40px;
     border-color: royalblue;
+    position:absolute;
+    margin-bottom:60px;
     
 }
 #borderForMyFriendshipPage2 {
@@ -143,8 +145,9 @@
     text-align: center;
     justify-content: center;
     margin-left: 600px;
-    margin-top: -395px;
+    margin-top: 40px;
     border-color: royalblue;
+    position:absolute;
 }
 
 #deleteTrackedBook{
