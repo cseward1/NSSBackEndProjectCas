@@ -3,17 +3,13 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>FriendsBookShelf</title>
-    
-</head>
-<body>  
+    <h1>BookShelf</h1>
+    @*<div>
+        <img src="~/images/LibraryBook2.png" alt="ASP.NET" id="BookShelfFriends" align="middle" />
 
-    <div id="bookGrid">
+    </div>*@
+    <div id="bookGridShelf">
 
         @foreach (var book in @Model)
         {
@@ -25,7 +21,7 @@
                              src="@Html.DisplayFor(modelItem => book.BookImage)&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="alternative text" title="@book.Description" />
 
                         <h4><strong>@book.BookTitle</strong></h4>
-                        <p><strong>@book.Author</strong></p>
+                        <p id="bookAuthor"><strong>@book.Author</strong></p>
                     </div>
                 </div>
               
@@ -33,5 +29,5 @@
             
             }
     </div>
-</body>
-</html>
+
+

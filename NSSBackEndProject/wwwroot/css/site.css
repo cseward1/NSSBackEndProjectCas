@@ -5,7 +5,8 @@
 }
 
 .bodybackground {
-    background-image: url("../images/bookwallpaper.jpg");
+    background-image: url("../images/Wallpaper.jpg");
+    /*background-size: cover;*/
 }
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -193,7 +194,12 @@
     font-size: large;
 }
 
-/*Your Friends BookShelf Page:*/
-#FriendsReadingList2 {
-    background-image: url("../images/j.jpg");
+#BookShelfFriends{
+    margin-left: 300px;
+    margin-top: 200px;
+}
+
+
+#bookAuthor{
+    margin:0;
 }
